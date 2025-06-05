@@ -12,10 +12,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(orderRouter);
 
 app.use((req, res, next) => {
-  return res.json({ error: "Not Found" });
+  return res.status(404).json({ error: "Not Found" });
 });
 app.use((err, req, res, next) => {
-  return res.json({ error: err.message });
+  return res.status(err.status || 500).json({ error: err.message });
 });
 
 app.listen(PORT, () => {
