@@ -9,7 +9,7 @@ const { PORT } = process.env;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(productRouter);
+app.use("/product", productRouter);
 
 app.use((req, res, next) => {
   return res.status(404).json({ error: "Not Found" });
