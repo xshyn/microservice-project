@@ -1,5 +1,5 @@
 const express = require("express");
-const { authRouter } = require("./routes/auth");
+const { authRouter } = require("./routes/auth.routes");
 const {
   notFoundController,
   errorController,

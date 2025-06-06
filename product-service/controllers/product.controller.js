@@ -1,3 +1,5 @@
+const { consume } = require("../rabbitmq/consumer");
+const { publishToQueue } = require("../rabbitmq/publisher");
 const {
   buyProductService,
   createProductService,
@@ -16,7 +18,12 @@ async function createProduct(req, res, next) {
 async function buyProduct(req, res, next) {
   try {
     const { productIds = [] } = req.body;
-    const result = await buyProductService(productIds, req.user.email);
+    const products = await buyProductService(productIds);
+    await publishToQueue("ORDER_BUY", {
+      products,
+      userEmail: req.user.email,
+    });
+    const result = await consume("PRODUCT");
     return res.json(result);
   } catch (error) {
     next(error);

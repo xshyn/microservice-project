@@ -1,3 +1,4 @@
+const { buyProduct } = require("../services/order.service");
 const { getChannel } = require("./channel");
 
 async function consume(queueName, handler = null) {
@@ -15,4 +16,4 @@ async function consume(queueName, handler = null) {
   });
 }
 
-module.exports = { consume };
+consume("ORDER_BUY", buyProduct);

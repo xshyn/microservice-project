@@ -1,7 +1,5 @@
 const { Router } = require("express");
 const { isAuthenticated } = require("../../isAuthenticated");
-const ProductModel = require("../model/product.model");
-const { createOrder } = require("../config/rabbit.config");
 const {
   createProduct,
   buyProduct,

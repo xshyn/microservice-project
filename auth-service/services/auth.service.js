@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 const createHttpError = require("http-errors");
-const UserModel = require("../model/uesr.model");
+const UserModel = require("../models/user.model");
 
 async function registerService(email, password) {
   const userExist = await UserModel.exists({ email });
